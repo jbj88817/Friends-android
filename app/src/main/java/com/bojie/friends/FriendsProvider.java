@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
 import android.provider.BaseColumns;
+import android.text.TextUtils;
 import android.util.Log;
 
 /**
@@ -91,7 +92,30 @@ public class FriendsProvider extends ContentProvider {
 
     @Override
     public int delete(Uri uri, String selection, String[] selectionArgs) {
-        return 0;
+        Log.v(TAG, "delete(uri=" + uri);
+
+        if (uri.equals(FriendsContract.BASE_CONTENT_URI)) {
+            deleteDatabase();
+            return 0;
+        }
+
+        final SQLiteDatabase db = mFriendsDatabase.getWritableDatabase();
+        final int match = URI_MATCHER.match(uri);
+
+        String selectionCriteria = selection;
+        switch (match) {
+            case FRIENDS:
+                break;
+            case FRIENDS_ID:
+                String id = FriendsContract.Friends.getFriendId(uri);
+                selectionCriteria = BaseColumns._ID + "=" + id
+                        + (!TextUtils.isEmpty(selection) ? "AND (" + selection + ")" : "");
+
+            default:
+                throw new IllegalArgumentException("Unknown Uri: " + uri);
+        }
+
+        return db.delete(FriendsDatabase.Tables.FRIENDS, selectionCriteria, selectionArgs);
     }
 
     @Override
@@ -99,14 +123,20 @@ public class FriendsProvider extends ContentProvider {
         Log.v(TAG, "update(uri=" + uri + ", values" + values.toString());
         final SQLiteDatabase db = mFriendsDatabase.getWritableDatabase();
         final int match = URI_MATCHER.match(uri);
+
+        String selectionCriteria = selection;
         switch (match) {
             case FRIENDS:
                 break;
             case FRIENDS_ID:
-
+                String id = FriendsContract.Friends.getFriendId(uri);
+                selectionCriteria = BaseColumns._ID + "=" + id
+                        + (!TextUtils.isEmpty(selection) ? "AND (" + selection + ")" : "");
             default:
                 throw new IllegalArgumentException("Unknown Uri: " + uri);
         }
+
+        return db.update(FriendsDatabase.Tables.FRIENDS, values, selectionCriteria, selectionArgs);
     }
 
     private void deleteDatabase() {
