@@ -62,7 +62,7 @@ public class FriendsCustomAdapter extends ArrayAdapter<Friend> {
         deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FriendsDialog dialog = new FriendsDiglog();
+                FriendsDialog dialog = new FriendsDialog();
                 Bundle args = new Bundle();
                 args.putString(FriendsDialog.DIALOG_TYPE, FriendsDialog.DELETE_RECORD);
                 args.putString(FriendsContract.FriendsColumns.FRIENDS_ID, String.valueOf(_id));

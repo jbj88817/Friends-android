@@ -4,4 +4,5 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="friend_name">25sp</dimen>
     <dimen name="friend_email">20sp</dimen>
+    <dimen name="friend_pop_message">25sp</dimen>
 </resources>
