@@ -8,7 +8,7 @@ import android.provider.BaseColumns;
  */
 public class FriendsContract {
     interface FriendsColumns {
-        String FRIEDNS_ID = "_id";
+        String FRIENDS_ID = "_id";
         String FRIENDS_NAME = "friends_name";
         String FRIENDS_EMAIL = "friends_email";
         String FRIENDS_PHONE = "friends_phone";
