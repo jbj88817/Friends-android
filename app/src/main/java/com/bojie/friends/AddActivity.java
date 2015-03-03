@@ -66,10 +66,10 @@ public class AddActivity extends FragmentActivity {
         return true;
     }
 
-    private boolean someDataEntered(){
-        if(mName_tv.getText().toString().length() > 0 ||
-                mEmail_tv.getText().toString().length()>0 ||
-                mPhone_tv.getText().toString().length()>0) {
+    private boolean someDataEntered() {
+        if (mName_tv.getText().toString().length() > 0 ||
+                mEmail_tv.getText().toString().length() > 0 ||
+                mPhone_tv.getText().toString().length() > 0) {
             return true;
         }
         return false;
@@ -77,7 +77,7 @@ public class AddActivity extends FragmentActivity {
 
     @Override
     public void onBackPressed() {
-        if(someDataEntered()){
+        if (someDataEntered()) {
             FriendsDialog dialog = new FriendsDialog();
             Bundle args = new Bundle();
             args.putString(FriendsDialog.DIALOG_TYPE, FriendsDialog.CONFIRM_EXIT);
