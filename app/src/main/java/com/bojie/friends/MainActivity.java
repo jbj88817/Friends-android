@@ -19,7 +19,7 @@ public class MainActivity extends FragmentActivity {
             fragmentManager.beginTransaction().add(android.R.id.content, friendsListFragment)
                     .commit();
         }
-        setContentView(R.layout.activity_main);
+        //setContentView(R.layout.activity_main);
     }
 
 

@@ -31,15 +31,15 @@ public class FriendsDialog extends DialogFragment {
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        AlertDialog.Builder builder= new AlertDialog.Builder(getActivity());
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         mLayoutInflater = getActivity().getLayoutInflater();
         final View view = mLayoutInflater.inflate(R.layout.friend_dialog, null);
         String command = getArguments().getString(DIALOG_TYPE);
-        if(command.equals(DELETE_RECORD)){
+        if (command.equals(DELETE_RECORD)) {
             final int _id = getArguments().getInt(FriendsContract.FriendsColumns.FRIENDS_ID);
             String name = getArguments().getString(FriendsContract.FriendsColumns.FRIENDS_NAME);
             TextView popupMessage = (TextView) view.findViewById(R.id.tv_popup_message);
-            popupMessage.setText("Are you sure you want to delete" + name + " from you friends list");
+            popupMessage.setText("Are you sure you want to delete " + name + " from you friends list?");
             builder.setView(view).setPositiveButton("OK", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
@@ -51,7 +51,7 @@ public class FriendsDialog extends DialogFragment {
                     startActivity(intent);
                 }
             });
-        } else if(command.equals(DELETE_DATABASE)){
+        } else if (command.equals(DELETE_DATABASE)) {
             TextView popupMessage = (TextView) view.findViewById(R.id.tv_popup_message);
             popupMessage.setText("Are you sure you want to delete the entire database?");
             builder.setView(view).setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -64,16 +64,28 @@ public class FriendsDialog extends DialogFragment {
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
                 }
-            });
-        } else if(command.equals(CONFIRM_EXIT)){
+            })
+                    .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    });
+        } else if (command.equals(CONFIRM_EXIT)) {
             TextView popupMessage = (TextView) view.findViewById(R.id.tv_popup_message);
             popupMessage.setText("Are you sure you want exit without saving?");
             builder.setView(view).setPositiveButton("OK", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-                   getActivity().finish();
+                    getActivity().finish();
                 }
-            });
+            })
+                    .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    });
         } else {
             Log.d(LOG_TAG, "Invalid command passed as parameter.");
         }

@@ -7,4 +7,7 @@
     <string name="menu_add_title">Add</string>
     <string name="menu_delete_title">Delete Database</string>
     <string name="search_title">Enter Name</string>
+    <string name="add_friend_title">Add Friend</string>
+    <string name="edit_friend_title">Edit Friend</string>
+    <string name="search_friend_title">Search</string>
 </resources>

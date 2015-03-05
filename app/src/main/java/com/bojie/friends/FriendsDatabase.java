@@ -27,10 +27,10 @@ public class FriendsDatabase extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE" + Tables.FRIENDS + " ("
+        db.execSQL("CREATE TABLE " + Tables.FRIENDS + "("
                 + BaseColumns._ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-                + FriendsContract.FriendsColumns.FRIENDS_NAME + " TEXT NOT NULL"
-                + FriendsContract.FriendsColumns.FRIENDS_EMAIL + " TEXT NOT NULL"
+                + FriendsContract.FriendsColumns.FRIENDS_NAME + " TEXT NOT NULL, "
+                + FriendsContract.FriendsColumns.FRIENDS_EMAIL + " TEXT NOT NULL, "
                 + FriendsContract.FriendsColumns.FRIENDS_PHONE + " TEXT NOT NULL);");
     }
 

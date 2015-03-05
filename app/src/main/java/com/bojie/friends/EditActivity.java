@@ -29,9 +29,9 @@ public class EditActivity extends FragmentActivity {
         setContentView(R.layout.add_edit);
         getActionBar().setDisplayHomeAsUpEnabled(true);
 
-        mName_tv = (TextView) findViewById(R.id.tv_friend_name);
-        mEmail_tv = (TextView) findViewById(R.id.tv_friend_email);
-        mPhone_tv = (TextView) findViewById(R.id.tv_friend_phone);
+        mName_tv = (TextView) findViewById(R.id.et_friendName);
+        mEmail_tv = (TextView) findViewById(R.id.et_friendEmail);
+        mPhone_tv = (TextView) findViewById(R.id.et_friendPhone);
 
         mContentResolver = EditActivity.this.getContentResolver();
         Intent intent = getIntent();
